@@ -89,6 +89,7 @@ public class Garage{
                 }
             }
         }
+        in.close();
     }
 
     public void leave(){//Remove a car from a spot.
@@ -112,6 +113,7 @@ public class Garage{
                 }
             }
         }
+        in.close();
     }
 
     public void save(){//Saves current status of garage to text file 'saveData.txt'.
@@ -139,8 +141,7 @@ public class Garage{
                 System.exit(1);
             }
             System.out.println("--------------------------------");
-            System.out.println("Saving and closing.");
-            System.out.println("--------------------------------");
+            System.out.println("Saving.");
         }
     }
 
