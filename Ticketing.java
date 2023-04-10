@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Ticketing {
-    private static final String DB_URL = "jdbc:sqlite:C:/Users/kapoo/Documents/CSC109/ParkingApp/ticketing.db";
+    private static final String DB_URL = "jdbc:sqlite:ticketing.db";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
