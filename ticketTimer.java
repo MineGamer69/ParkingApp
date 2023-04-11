@@ -39,7 +39,7 @@ public void clearTimes(){ // Method to clear all saved timer values
 public void loadTime(){ // Method to load timer values from timeData.txt
     long inputLine;
     Scanner fileInput;
-    File inFile = new File("timeData.txt"); // Create a File object with the file name
+    File inFile = new File("ParkingApp/timeData.txt"); // Create a File object with the file name
 
     try 
     {
@@ -64,7 +64,7 @@ public void saveTime(){ // Method to save timer values to timeData.txt
     FileWriter timerOutfile;
     try
     {
-        timerOutfile = new FileWriter("timeData.txt"); // Create a FileWriter object with the file name
+        timerOutfile = new FileWriter("ParkingApp/timeData.txt"); // Create a FileWriter object with the file name
         timerOutput =  new PrintWriter(timerOutfile); // Create a PrintWriter object to write to the file
 
         for (int i=0; i<100; i++){
