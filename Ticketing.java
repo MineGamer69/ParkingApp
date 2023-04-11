@@ -11,10 +11,10 @@ public class Ticketing {
 
         while (true) {
             System.out.println("What would you like to do?");
-            System.out.println("1. Assign a ticket");
-            System.out.println("2. View tickets");
-            System.out.println("3. Quit");
-            System.out.println("4. Clear ALL Tickets! (WARNING THIS IS PERMENANT!)");
+            System.out.println("1) Assign a ticket");
+            System.out.println("2) View tickets");
+            System.out.println("3) Quit");
+            System.out.println("4) Clear ALL Tickets! (WARNING THIS IS PERMENANT!)");
             System.out.print("Enter choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();

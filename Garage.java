@@ -4,6 +4,8 @@ import java.io.*;
 public class Garage{
     public boolean spotFilled[];
     public int numSpaces = 100;
+    public int takenSpaces;
+    public int currentSpot;
 
     public Garage(){//Object that stores spaces and whether they are full.
         spotFilled = new boolean[numSpaces];
@@ -71,10 +73,11 @@ public class Garage{
     public void park(){//Park a car in a spot.
         Scanner in = new Scanner(System.in);
         boolean parked = false;
+        int spot = 0;
         while (parked == false){
             System.out.println("--------------------------------");
             System.out.print("Choose a spot number: ");
-            int spot = in.nextInt();
+            spot = in.nextInt();
             if (spot < 1 || spot > 100){
                 System.out.print("Choose a valid spot number between 1 and 100: ");
             }
@@ -86,19 +89,22 @@ public class Garage{
                     System.out.println("Parked in spot "+spot+".");
                     spotFilled[spot-1]=true;
                     parked = true;
+                    currentSpot = spot;
                 }
             }
         }
-        in.close();
+        
+        
     }
 
-    public void leave(){//Remove a car from a spot.
+    public int leave(){//Remove a car from a spot.
         Scanner in = new Scanner(System.in);
         boolean left = false;
+        int spot = 0;
         while(left == false){
             System.out.println("--------------------------------");
             System.out.print("Which spot is your car parked in? ");
-            int spot = in.nextInt();
+            spot = in.nextInt();
             if (spot < 1 || spot > 100){
                 System.out.println("Choose a valid spot between 1 and 100");
             }
@@ -107,50 +113,51 @@ public class Garage{
                     System.out.println("There is no car parked in spot "+spot+".");
                 }
                 else{
-                    System.out.println("Leaving spot "+spot+".");
+                    System.out.println("Leaving spot "+spot+".\nHave a nice day!");
                     spotFilled[spot-1]=false;
                     left = true;
                 }
             }
         }
-        in.close();
+        return spot;
+        
     }
 
     public void save(){//Saves current status of garage to text file 'saveData.txt'.
+        
+        PrintWriter output;
+        FileWriter outfile;
+        try
         {
-            PrintWriter output;
-            FileWriter outfile;
-            try
-            {
-                outfile = new FileWriter("savedData.txt");
-                output =  new PrintWriter(outfile);
+            outfile = new FileWriter("savedData.txt");
+            output =  new PrintWriter(outfile);
                 
-                for (int i=0; i<numSpaces; i++){
-                    if (spotFilled[i] == true){
-                        output.println("X");
-                    }
-                    else{
-                        output.println("O");
-                    }
+            for (int i=0; i<numSpaces; i++){
+                if (spotFilled[i] == true){
+                    output.println("X");
                 }
-                output.close();
+                else{
+                    output.println("O");
+                }
             }
-            catch(IOException e)
-            {
-                System.out.println(e);
-                System.exit(1);
-            }
-            System.out.println("--------------------------------");
-            System.out.println("Saving.");
+            output.close();
         }
+        catch(IOException e)
+        {
+            System.out.println(e);
+            System.exit(1);
+        }
+        System.out.println("--------------------------------");
+        System.out.println("Saving.");
+        
     }
 
     public void load(){//Loads existing garage data from text file 'saveData.txt'.
 		char inputLine;
 		Scanner fileInput;
 		File inFile = new File("savedData.txt");
-        System.out.println("--------------------------------");
-		System.out.println("Loading save data.");
+        //System.out.println("--------------------------------");
+		//System.out.println("Loading save data.");
         
 		try 
 		{
@@ -161,6 +168,7 @@ public class Garage{
 				    inputLine = fileInput.next().charAt(0);
                     if (inputLine == 'X'){
                         spotFilled[i]=true;
+                        takenSpaces++;
                     }
                     else if(inputLine == 'O'){
                         spotFilled[i]=false; 
@@ -173,6 +181,13 @@ public class Garage{
 		System.exit(1);
 		}
 	}
+    public int taken(){
+        return takenSpaces;
+    }
+    public int chosenSpot(){
+        
+        return currentSpot;
+    }
 
     public void testEnterExit(){//Tests methods.
         load();
