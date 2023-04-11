@@ -60,17 +60,17 @@ public void loadTime(){ // Method to load timer values from timeData.txt
 }
 
 public void saveTime(){ // Method to save timer values to timeData.txt
-    PrintWriter output;
-    FileWriter outfile;
+    PrintWriter timerOutput;
+    FileWriter timerOutfile;
     try
     {
-        outfile = new FileWriter("timeData.txt"); // Create a FileWriter object with the file name
-        output =  new PrintWriter(outfile); // Create a PrintWriter object to write to the file
+        timerOutfile = new FileWriter("timeData.txt"); // Create a FileWriter object with the file name
+        timerOutput =  new PrintWriter(timerOutfile); // Create a PrintWriter object to write to the file
 
         for (int i=0; i<100; i++){
-            output.println(spaceTimes[i]); // Write each timer value to a new line in the file
+            timerOutput.println(spaceTimes[i]); // Write each timer value to a new line in the file
         }
-        output.close(); // Close the PrintWriter
+        timerOutput.close(); // Close the PrintWriter
     }
     catch(IOException e)
     {
